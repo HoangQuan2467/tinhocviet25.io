@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Hình Ảnh</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Thông Tin Cá Nhân</h1>
+    </header>
+    
+    <div class="container">
+        <input type="file" id="imageInput" accept="image/*">
+        <div id="preview"></div>
+        <button id="clearBtn">Xóa Ảnh</button>
+    </div>
+    
+    <div class="info-container">
+        <div class="info-box">
+            <div class="info-front">Thông Tin Cá Nhân</div>
+            <div class="info-back">Tên: Nguyễn Hoàng Quân<br>Tuổi: 22<br>Email: tinhocviet.edu.vn@gmail.com<br>Địa chỉ: Thủ Đức, TPHCM</div>
+        </div>
+        <div class="info-box">
+            <div class="info-front">Học Vấn</div>
+            <div class="info-back">Trường: Đại học Công Nghệ TPHCM<br>Chuyên ngành: Công Nghệ Phần Mềm<br>Năm tốt nghiệp: 2025</div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Trang Web Hiển Thị Thông Tin. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        document.getElementById('imageInput').addEventListener('change', function(event) {
+            const preview = document.getElementById('preview');
+            preview.innerHTML = "";
+            const file = event.target.files[0];
+            if (file) {
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(file);
+                img.onload = () => URL.revokeObjectURL(img.src);
+                preview.appendChild(img);
+            }
+        });
+        
+        document.getElementById('clearBtn').addEventListener('click', function() {
+            document.getElementById('imageInput').value = "";
+            document.getElementById('preview').innerHTML = "";
+        });
+    </script>
+</body>
+</html>
